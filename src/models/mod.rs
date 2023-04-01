@@ -27,10 +27,15 @@ pub trait HuaweiModels {
     fn get_data(&self, point: &str) -> HDataTypes;
     fn get_data_index(&self, point: &str) -> usize;
     fn get_string(&self, point: &str) -> Option<String>;
+    fn get_string_by_index(&self, idx: usize) -> Option<String>;
     fn get_u16(&self, point: &str) -> Option<u16>;
+    fn get_u16_by_index(&self, idx: usize) -> Option<u16>;
     fn get_u32(&self, point: &str) -> Option<u32>;
+    fn get_u32_by_index(&self, idx: usize) -> Option<u32>;
     fn get_i16(&self, point: &str) -> Option<i16>;
+    fn get_i16_by_index(&self, idx: usize) -> Option<i16>;
     fn get_i32(&self, point: &str) -> Option<i32>;
+    fn get_i32_by_index(&self, idx: usize) -> Option<i32>;
 }
 
 
@@ -224,6 +229,15 @@ impl HuaweiModels for HModel {
         return None
     }
 
+    fn get_string_by_index(&self, idx: usize) -> Option<String> {
+        match &self.data[idx] {
+            HDataTypes::HuaweiString(data) => {
+                return Some(data.value.clone());
+            },
+            _ => return None,
+        }
+    }
+
     fn get_u16(&self, point: &str) -> Option<u16> {
         for data_tmp in self.data.iter() {
             match data_tmp {
@@ -236,6 +250,15 @@ impl HuaweiModels for HModel {
             }
         }
         return None
+    }
+
+    fn get_u16_by_index(&self, idx: usize) -> Option<u16> {
+        match self.data[idx] {
+            HDataTypes::HuaweiU16(data) => {
+                return Some(data.value);
+            },
+            _ => return None,
+        }
     }
 
     fn get_u32(&self, point: &str) -> Option<u32> {
@@ -252,6 +275,15 @@ impl HuaweiModels for HModel {
         return None
     }
 
+    fn get_u32_by_index(&self, idx: usize) -> Option<u32> {
+        match self.data[idx] {
+            HDataTypes::HuaweiU32(data) => {
+                return Some(data.value);
+            },
+            _ => return None,
+        }
+    }
+
     fn get_i16(&self, point: &str) -> Option<i16> {
         for data_tmp in self.data.iter() {
             match data_tmp {
@@ -266,6 +298,15 @@ impl HuaweiModels for HModel {
         return None
     }
 
+    fn get_i16_by_index(&self, idx: usize) -> Option<i16> {
+        match self.data[idx] {
+            HDataTypes::HuaweiI16(data) => {
+                return Some(data.value);
+            },
+            _ => return None,
+        }
+    }
+
     fn get_i32(&self, point: &str) -> Option<i32> {
         for data_tmp in self.data.iter() {
             match data_tmp {
@@ -278,6 +319,15 @@ impl HuaweiModels for HModel {
             }
         }
         return None
+    }
+
+    fn get_i32_by_index(&self, idx: usize) -> Option<i32> {
+        match self.data[idx] {
+            HDataTypes::HuaweiI32(data) => {
+                return Some(data.value);
+            },
+            _ => return None,
+        }
     }
 }
 
