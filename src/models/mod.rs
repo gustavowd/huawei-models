@@ -364,7 +364,7 @@ impl From<(Vec<u16>, u16, u16, &HModel)> for HModel {
             for data in model1.data.iter_mut() {
                 match data {
                     HDataTypes::HuaweiString(data) => {
-                        if (offset == data.offset) && (data.write_access == true) {
+                        if offset == data.offset {
                             let slice = from.0[data.offset as usize..(data.offset + data.length) as usize].to_vec();
                             data.value = Point::<String>::decode(slice).value;
                             offset += data.length;
@@ -372,7 +372,7 @@ impl From<(Vec<u16>, u16, u16, &HModel)> for HModel {
                         }
                     },
                     HDataTypes::HuaweiU16(data) => {
-                        if (offset == data.offset) && (data.write_access == true) {
+                        if offset == data.offset {
                             let slice = from.0[data.offset as usize..(data.offset + data.length) as usize].to_vec();
                             data.value = u16::decode(slice);
                             offset += data.length;
@@ -380,7 +380,7 @@ impl From<(Vec<u16>, u16, u16, &HModel)> for HModel {
                         }
                     },
                     HDataTypes::HuaweiU32(data) => {
-                        if (offset == data.offset) && (data.write_access == true) {
+                        if offset == data.offset {
                             let slice = from.0[data.offset as usize..(data.offset + data.length) as usize].to_vec();
                             data.value = u32::decode(slice);
                             offset += data.length;
@@ -388,7 +388,7 @@ impl From<(Vec<u16>, u16, u16, &HModel)> for HModel {
                         }
                     },
                     HDataTypes::HuaweiI16(data) => {
-                        if (offset == data.offset) && (data.write_access == true) {
+                        if offset == data.offset {
                             let slice = from.0[data.offset as usize..(data.offset + data.length) as usize].to_vec();
                             data.value = i16::decode(slice);
                             offset += data.length;
@@ -396,7 +396,7 @@ impl From<(Vec<u16>, u16, u16, &HModel)> for HModel {
                         }
                     },
                     HDataTypes::HuaweiI32(data) => {
-                        if (offset == data.offset) && (data.write_access == true) {
+                        if offset == data.offset {
                             let slice = from.0[data.offset as usize..(data.offset + data.length) as usize].to_vec();
                             data.value = i32::decode(slice);
                             offset += data.length;
