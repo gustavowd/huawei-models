@@ -3,6 +3,7 @@ use crate::types::*;
 
 pub mod model1;
 pub mod model3;
+pub mod model5;
 
 #[derive(Debug, Clone)]
 pub struct HModel {
@@ -61,6 +62,7 @@ impl HuaweiModels for HModel {
         match model_number {
             1 => model1::model1(),
             3 => model3::model3(),
+            5 => model5::model5(),
             _ => return model1::model1(),
         }
     }
