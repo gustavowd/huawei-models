@@ -4,7 +4,7 @@ pub fn model5() -> HModel {
     let mut ret = HModel {
         start_addr: 32319,
         end_addr: 32322,
-        model_number: 1,
+        model_number: 5,
         qtd: 4,
         data: Vec::new(),
     };
