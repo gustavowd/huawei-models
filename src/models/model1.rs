@@ -9,8 +9,8 @@ pub fn model1() -> HModel {
         data: Vec::new(),
     };
     ret.data.push(HDataTypes::HuaweiString(Point { name: "Model", offset: 0, length: 15, write_access: false, value: String::new() } ));
-    ret.data.push(HDataTypes::HuaweiString(Point { name: "SN", offset: 1, length: 10, write_access: false, value: String::new() } ));
-    ret.data.push(HDataTypes::HuaweiString(Point { name: "PN", offset: 2, length: 10, write_access: false, value: String::new() } ));
+    ret.data.push(HDataTypes::HuaweiString(Point { name: "SN", offset: 15, length: 10, write_access: false, value: String::new() } ));
+    ret.data.push(HDataTypes::HuaweiString(Point { name: "PN", offset: 25, length: 10, write_access: false, value: String::new() } ));
 
     ret
 }
