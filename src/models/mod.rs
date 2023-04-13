@@ -2,8 +2,11 @@ use std::io::Write;
 use crate::types::*;
 
 pub mod model1;
+pub mod model2;
 pub mod model3;
+pub mod model4;
 pub mod model5;
+pub mod model6;
 
 #[derive(Debug, Clone)]
 pub struct HModel {
@@ -61,8 +64,11 @@ impl HuaweiModels for HModel {
     fn new (model_number: u16) -> HModel {
         match model_number {
             1 => model1::model1(),
+            2 => model2::model2(),
             3 => model3::model3(),
+            4 => model4::model4(),
             5 => model5::model5(),
+            6 => model6::model6(),
             _ => return model1::model1(),
         }
     }
