@@ -258,7 +258,7 @@ impl HuaweiModels for HModel {
                         return Some(data.value);
                     }
                 },
-                _ => return None,
+                _ => {}
             }
         }
         return None
@@ -281,7 +281,7 @@ impl HuaweiModels for HModel {
                         return Some(data.value);
                     }
                 },
-                _ => return None,
+                _ => {},
             }
         }
         return None
@@ -304,7 +304,7 @@ impl HuaweiModels for HModel {
                         return Some(data.value);
                     }
                 },
-                _ => return None,
+                _ => {},
             }
         }
         return None
@@ -327,7 +327,7 @@ impl HuaweiModels for HModel {
                         return Some(data.value);
                     }
                 },
-                _ => return None,
+                _ => {},
             }
         }
         return None
