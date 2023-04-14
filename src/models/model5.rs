@@ -11,7 +11,7 @@ pub fn model5() -> HModel {
     ret.data.push(HDataTypes::HuaweiI32(Point { name: "Input power", offset: 0, length: 2, write_access: false, value: 0 } ));
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "Uab", offset: 2, length: 1, write_access: false, value: 0 } ));
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "Ubc", offset: 3, length: 1, write_access: false, value: 0 } ));
-    ret.data.push(HDataTypes::HuaweiU16(Point { name: "Uac", offset: 4, length: 1, write_access: false, value: 0 } ));
+    ret.data.push(HDataTypes::HuaweiU16(Point { name: "Uca", offset: 4, length: 1, write_access: false, value: 0 } ));
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "Ua", offset: 5, length: 1, write_access: false, value: 0 } ));
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "Ub", offset: 6, length: 1, write_access: false, value: 0 } ));
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "Uc", offset: 7, length: 1, write_access: false, value: 0 } ));
