@@ -9,6 +9,7 @@ pub mod model5;
 pub mod model6;
 pub mod model7;
 pub mod model8;
+pub mod model9;
 
 #[derive(Debug, Clone)]
 pub struct HModel {
