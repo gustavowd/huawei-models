@@ -74,6 +74,7 @@ impl HuaweiModels for HModel {
             6 => model6::model6(),
             7 => model7::model7(),
             8 => model8::model8(),
+            9 => model9::model9(),
             _ => return model1::model1(),
         }
     }
