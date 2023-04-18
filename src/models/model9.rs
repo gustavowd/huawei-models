@@ -5,7 +5,7 @@ pub fn model9() -> HModel {
         start_addr: 32000,
         end_addr: 32004,
         model_number: 9,
-        qtd: 4,
+        qtd: 5,
         data: Vec::new(),
     };
     ret.data.push(HDataTypes::HuaweiU16(Point { name: "State 1", offset: 0, length: 1, write_access: false, value: 0xFFFF } ));
