@@ -237,7 +237,7 @@ impl HuaweiModels for HModel {
                         return Some(data.value.clone());
                     }
                 },
-                _ => return None,
+                _ => {},
             }
         }
         return None
