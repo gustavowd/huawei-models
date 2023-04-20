@@ -363,9 +363,7 @@ pub fn srt_to_vec_u8(src: &str, mut dst: &mut [u8]){
 
 impl From<HModel> for Vec<u16> {
     fn from(from: HModel) -> Self {
-        let mut registers: Vec<u16> = vec![0; 2];
-        registers[0] = from.model_number;
-        registers[1] = from.qtd;
+        let mut registers: Vec<u16> = Vec::new();
 
         for data in from.data.iter() {
             match data {
