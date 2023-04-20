@@ -9,7 +9,7 @@ pub fn model15() -> HModel {
         data: Vec::new(),
     };
 
-    ret.data.push(HDataTypes::HuaweiU16(Point { name: "PGS - Active power percentage derating (0.1%)", offset: 0, length: 1, write_access: false, value: 0 } ));
+    ret.data.push(HDataTypes::HuaweiU16(Point { name: "PGS - Active power percentage derating (0.1%)", offset: 0, length: 1, write_access: true, value: 0 } ));
 
     ret
 }

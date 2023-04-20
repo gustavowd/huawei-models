@@ -9,7 +9,7 @@ pub fn model13() -> HModel {
         data: Vec::new(),
     };
 
-    ret.data.push(HDataTypes::HuaweiI16(Point { name: "PGS - Reactive power compensation (PF)", offset: 0, length: 1, write_access: false, value: 0 } ));
+    ret.data.push(HDataTypes::HuaweiI16(Point { name: "PGS - Reactive power compensation (PF)", offset: 0, length: 1, write_access: true, value: 0 } ));
 
     ret
 }

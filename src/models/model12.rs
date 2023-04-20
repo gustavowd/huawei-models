@@ -9,7 +9,7 @@ pub fn model12() -> HModel {
         data: Vec::new(),
     };
 
-    ret.data.push(HDataTypes::HuaweiU16(Point { name: "PGS - Fixed active power derated", offset: 0, length: 1, write_access: false, value: 0 } ));
+    ret.data.push(HDataTypes::HuaweiU16(Point { name: "PGS - Fixed active power derated", offset: 0, length: 1, write_access: true, value: 0 } ));
 
     ret
 }
