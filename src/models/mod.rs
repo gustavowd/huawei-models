@@ -10,6 +10,12 @@ pub mod model6;
 pub mod model7;
 pub mod model8;
 pub mod model9;
+pub mod model10;
+pub mod model11;
+pub mod model12;
+pub mod model13;
+pub mod model14;
+pub mod model15;
 
 #[derive(Debug, Clone)]
 pub struct HModel {
@@ -75,6 +81,12 @@ impl HuaweiModels for HModel {
             7 => model7::model7(),
             8 => model8::model8(),
             9 => model9::model9(),
+            10 => model10::model10(),
+            11 => model11::model11(),
+            12 => model12::model12(),
+            13 => model13::model13(),
+            14 => model14::model14(),
+            15 => model15::model15(),
             _ => return model1::model1(),
         }
     }
