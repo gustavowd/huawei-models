@@ -49,6 +49,7 @@ pub trait HuaweiModels {
     fn get_i16_by_index(&self, idx: usize) -> Option<i16>;
     fn get_i32(&self, point: &str) -> Option<i32>;
     fn get_i32_by_index(&self, idx: usize) -> Option<i32>;
+    fn print(&self);
 }
 
 
@@ -353,6 +354,18 @@ impl HuaweiModels for HModel {
                 return Some(data.value);
             },
             _ => return None,
+        }
+    }
+
+    fn print(&self) {
+        for data in self.data.iter() {
+            match data {
+                HDataTypes::HuaweiI16(data) => println!("{}: {}", data.name, data.value),
+                HDataTypes::HuaweiI32(data) => println!("{}: {}", data.name, data.value),
+                HDataTypes::HuaweiU16(data) => println!("{}: {}", data.name, data.value),
+                HDataTypes::HuaweiU32(data) => println!("{}: {}", data.name, data.value),
+                HDataTypes::HuaweiString(data) => println!("{}: {}", data.name, data.value.clone()),
+            }
         }
     }
 }
