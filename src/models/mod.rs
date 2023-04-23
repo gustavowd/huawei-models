@@ -358,6 +358,7 @@ impl HuaweiModels for HModel {
     }
 
     fn print(&self) {
+        println!("Model {}:", self.model_number);
         for data in self.data.iter() {
             match data {
                 HDataTypes::HuaweiI16(data) => println!("{}: {}", data.name, data.value),
@@ -367,6 +368,7 @@ impl HuaweiModels for HModel {
                 HDataTypes::HuaweiString(data) => println!("{}: {}", data.name, data.value.clone()),
             }
         }
+        println!(" ");
     }
 }
 
