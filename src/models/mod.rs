@@ -39,7 +39,7 @@ pub trait HuaweiModels {
     fn update_data(&mut self, point: &str, value: &HDataTypes);
     fn update_data_by_index(&mut self, index: usize, value: &HDataTypes);
     fn get_data(&self, point: &str) -> HDataTypes;
-    fn get_data_index(&self, point: &str) -> usize;
+    fn get_data_index(&self, point: &str) -> Option<usize>;
     fn get_string(&self, point: &str) -> Option<String>;
     fn get_string_by_index(&self, idx: usize) -> Option<String>;
     fn get_u16(&self, point: &str) -> Option<u16>;
@@ -209,39 +209,39 @@ impl HuaweiModels for HModel {
         return HDataTypes::HuaweiU16(Point { name: "", offset: 0, length: 1, write_access: false, value: 0 } )
     }
 
-    fn get_data_index(&self, point: &str) -> usize {
+    fn get_data_index(&self, point: &str) -> Option<usize> {
         let mut idx = 0;
         for data_tmp in self.data.iter() {
             match data_tmp {
                 HDataTypes::HuaweiString(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return idx;
+                        return Some(idx);
                     }
                 },
                 HDataTypes::HuaweiU16(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return idx;
+                        return Some(idx);
                     }
                 },
                 HDataTypes::HuaweiU32(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return idx;
+                        return Some(idx);
                     }
                 },
                 HDataTypes::HuaweiI16(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return idx;
+                        return Some(idx);
                     }
                 },
                 HDataTypes::HuaweiI32(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return idx;
+                        return Some(idx);
                     }
                 },
             };
             idx += 1;
         }
-        return idx;
+        return None;
     }
 
     fn get_string(&self, point: &str) -> Option<String> {
