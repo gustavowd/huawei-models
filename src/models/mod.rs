@@ -1,4 +1,4 @@
-use std::io::Write;
+//use std::io::Write;
 use crate::types::*;
 
 pub mod model1;
@@ -60,12 +60,10 @@ impl HModels {
     }
 
     pub fn get_model_index(&self, model_number: u16) -> Option<usize> {
-        let mut idx = 0;
-        for model in self.models.iter() {
+        for (idx, model) in self.models.iter().enumerate() {
             if model_number == model.model_number {
                 return Some(idx);
             }
-            idx += 1;
         }
         None
     }
@@ -90,7 +88,7 @@ impl HuaweiModels for HModel {
             14 => model14::model14(),
             15 => model15::model15(),
             16 => model16::model16(),
-            _ => return model1::model1(),
+            _ => model1::model1(),
         }
     }
 
@@ -99,42 +97,37 @@ impl HuaweiModels for HModel {
             match data_tmp {
                 HDataTypes::HuaweiString(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()){
-                        match value {
-                            HDataTypes::HuaweiString(update_value) =>  data.value = update_value.value.clone(),
-                            _ => {},
-                        };
+                        if let HDataTypes::HuaweiString(update_value) = value {
+                            data.value = update_value.value.clone();
+                        }
                     }
                 },
                 HDataTypes::HuaweiU16(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()){
-                        match value {
-                            HDataTypes::HuaweiU16(update_value) =>  data.value = update_value.value,
-                            _ => {},
-                        };
+                        if let HDataTypes::HuaweiU16(update_value) = value {
+                            data.value = update_value.value;
+                        }
                     }
                 },
                 HDataTypes::HuaweiU32(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()){
-                        match value {
-                            HDataTypes::HuaweiU32(update_value) =>  data.value = update_value.value,
-                            _ => {},
-                        };
+                        if let HDataTypes::HuaweiU32(update_value) = value {
+                            data.value = update_value.value;
+                        }
                     }
                 },
                 HDataTypes::HuaweiI16(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()){
-                        match value {
-                            HDataTypes::HuaweiI16(update_value) =>  data.value = update_value.value,
-                            _ => {},
-                        };
+                        if let HDataTypes::HuaweiI16(update_value) = value {
+                            data.value = update_value.value;
+                        }
                     }
                 },
                 HDataTypes::HuaweiI32(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()){
-                        match value {
-                            HDataTypes::HuaweiI32(update_value) =>  data.value = update_value.value,
-                            _ => {},
-                        };
+                        if let HDataTypes::HuaweiI32(update_value) = value {
+                            data.value = update_value.value;
+                        }
                     }
                 },
             }
@@ -144,34 +137,29 @@ impl HuaweiModels for HModel {
     fn update_data_by_index(&mut self, index: usize, value: &HDataTypes) {
         match &mut self.data[index] {
             HDataTypes::HuaweiString(data) => {
-                match value {
-                    HDataTypes::HuaweiString(update_value) =>  data.value = update_value.value.clone(),
-                    _ => {},
-                };
+                if let HDataTypes::HuaweiString(update_value) = value {
+                    data.value = update_value.value.clone();
+                }
             },
             HDataTypes::HuaweiU16(data) => {
-                match value {
-                    HDataTypes::HuaweiU16(update_value) =>  data.value = update_value.value,
-                    _ => {},
-                };
+                if let HDataTypes::HuaweiU16(update_value) = value {
+                    data.value = update_value.value;
+                }
             },
             HDataTypes::HuaweiU32(data) => {
-                match value {
-                    HDataTypes::HuaweiU32(update_value) =>  data.value = update_value.value,
-                    _ => {},
-                };
+                if let HDataTypes::HuaweiU32(update_value) = value {
+                    data.value = update_value.value;
+                }
             },
             HDataTypes::HuaweiI16(data) => {
-                match value {
-                    HDataTypes::HuaweiI16(update_value) =>  data.value = update_value.value,
-                    _ => {},
-                };
+                if let HDataTypes::HuaweiI16(update_value) = value {
+                    data.value = update_value.value;
+                }
             },
             HDataTypes::HuaweiI32(data) => {
-                match value {
-                    HDataTypes::HuaweiI32(update_value) =>  data.value = update_value.value,
-                    _ => {},
-                };
+                if let HDataTypes::HuaweiI32(update_value) = value {
+                    data.value = update_value.value;
+                }
             },
         }
     }
@@ -206,12 +194,11 @@ impl HuaweiModels for HModel {
                 },
             };
         }
-        return HDataTypes::HuaweiU16(Point { name: "", offset: 0, length: 1, write_access: false, value: 0 } )
+        HDataTypes::HuaweiU16(Point { name: "", offset: 0, length: 1, write_access: false, value: 0 } )
     }
 
     fn get_data_index(&self, point: &str) -> Option<usize> {
-        let mut idx = 0;
-        for data_tmp in self.data.iter() {
+        for (idx, data_tmp) in self.data.iter().enumerate() {
             match data_tmp {
                 HDataTypes::HuaweiString(data) => {
                     if data.name.contains(point) && (data.name.len() == point.len()) {
@@ -239,123 +226,107 @@ impl HuaweiModels for HModel {
                     }
                 },
             };
-            idx += 1;
         }
-        return None;
+        None
     }
 
     fn get_string(&self, point: &str) -> Option<String> {
         for data_tmp in self.data.iter() {
-            match data_tmp {
-                HDataTypes::HuaweiString(data) => {
-                    if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return Some(data.value.clone());
-                    }
-                },
-                _ => {},
+            if let HDataTypes::HuaweiString(data) = data_tmp {
+                if data.name.contains(point) && (data.name.len() == point.len()) {
+                    return Some(data.value.clone());
+                }
             }
         }
-        return None
+        None
     }
 
     fn get_string_by_index(&self, idx: usize) -> Option<String> {
         match &self.data[idx] {
             HDataTypes::HuaweiString(data) => {
-                return Some(data.value.clone());
+                Some(data.value.clone())
             },
-            _ => return None,
+            _ => None
         }
     }
 
     fn get_u16(&self, point: &str) -> Option<u16> {
         for data_tmp in self.data.iter() {
-            match data_tmp {
-                HDataTypes::HuaweiU16(data) => {
-                    if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return Some(data.value);
-                    }
-                },
-                _ => {}
+            if let HDataTypes::HuaweiU16(data) = data_tmp {
+                if data.name.contains(point) && (data.name.len() == point.len()) {
+                    return Some(data.value);
+                }
             }
         }
-        return None
+        None
     }
 
     fn get_u16_by_index(&self, idx: usize) -> Option<u16> {
         match self.data[idx] {
             HDataTypes::HuaweiU16(data) => {
-                return Some(data.value);
+                Some(data.value)
             },
-            _ => return None,
+            _ => None
         }
     }
 
     fn get_u32(&self, point: &str) -> Option<u32> {
         for data_tmp in self.data.iter() {
-            match data_tmp {
-                HDataTypes::HuaweiU32(data) => {
-                    if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return Some(data.value);
-                    }
-                },
-                _ => {},
+            if let HDataTypes::HuaweiU32(data) = data_tmp {
+                if data.name.contains(point) && (data.name.len() == point.len()) {
+                    return Some(data.value);
+                }
             }
         }
-        return None
+        None
     }
 
     fn get_u32_by_index(&self, idx: usize) -> Option<u32> {
         match self.data[idx] {
             HDataTypes::HuaweiU32(data) => {
-                return Some(data.value);
+                Some(data.value)
             },
-            _ => return None,
+            _ => None
         }
     }
 
     fn get_i16(&self, point: &str) -> Option<i16> {
         for data_tmp in self.data.iter() {
-            match data_tmp {
-                HDataTypes::HuaweiI16(data) => {
-                    if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return Some(data.value);
-                    }
-                },
-                _ => {},
+            if let HDataTypes::HuaweiI16(data) = data_tmp {
+                if data.name.contains(point) && (data.name.len() == point.len()) {
+                    return Some(data.value);
+                }
             }
         }
-        return None
+        None
     }
 
     fn get_i16_by_index(&self, idx: usize) -> Option<i16> {
         match self.data[idx] {
             HDataTypes::HuaweiI16(data) => {
-                return Some(data.value);
+                Some(data.value)
             },
-            _ => return None,
+            _ => None
         }
     }
 
     fn get_i32(&self, point: &str) -> Option<i32> {
         for data_tmp in self.data.iter() {
-            match data_tmp {
-                HDataTypes::HuaweiI32(data) => {
-                    if data.name.contains(point) && (data.name.len() == point.len()) {
-                        return Some(data.value);
-                    }
-                },
-                _ => {},
+            if let HDataTypes::HuaweiI32(data) = data_tmp {
+                if data.name.contains(point) && (data.name.len() == point.len()) {
+                    return Some(data.value);
+                }
             }
         }
-        return None
+        None
     }
 
     fn get_i32_by_index(&self, idx: usize) -> Option<i32> {
         match self.data[idx] {
             HDataTypes::HuaweiI32(data) => {
-                return Some(data.value);
+                Some(data.value)
             },
-            _ => return None,
+            _ => None
         }
     }
 
@@ -374,9 +345,9 @@ impl HuaweiModels for HModel {
     }
 }
 
-pub fn srt_to_vec_u8(src: &str, mut dst: &mut [u8]){
-    dst.write(src.as_bytes()).unwrap();
-}
+//pub fn srt_to_vec_u8(src: &str, mut dst: &mut [u8]){
+//    dst.write_all(src.as_bytes()).unwrap();
+//}
 
 impl From<HModel> for Vec<u16> {
     fn from(from: HModel) -> Self {
